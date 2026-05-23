@@ -5,11 +5,17 @@ import {
   AcademicSession, SubjectItem, ClassItem, SectionItem, TeacherSpecialization
 } from "../types";
 
-// Grab Supabase configurations (with direct fallback to user's credentials to avoid crashes)
-const SUPABASE_URL = (import.meta as any).env.VITE_SUPABASE_URL || "https://qywcdbuggdlvwwakirzi.supabase.co";
-const SUPABASE_ANON_KEY = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5d2NkYnVnZ2Rsdnd3YWtpcnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0ODA5MTQsImV4cCI6MjA5NTA1NjkxNH0.FC4eTafhzR5mRJQZxWVsqwys8y2NlOx3haIGKrhzIT4";
+const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL;
+const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error(
+    "CRITICAL: Supabase environment variables are missing!\n" +
+    "Please make sure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your environment variables."
+  );
+}
+
+export const supabase = createClient(supabaseUrl || "", supabaseAnonKey || "");
 
 /**
  * Helper to upload image to Supabase Storage.

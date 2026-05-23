@@ -54,7 +54,7 @@ async function startServer() {
         return;
       }
 
-      const supabaseUrl = process.env.VITE_SUPABASE_URL || "https://qywcdbuggdlvwwakirzi.supabase.co";
+      const supabaseUrl = process.env.VITE_SUPABASE_URL || "";
       const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
       if (!supabaseServiceKey) {
@@ -103,7 +103,7 @@ async function startServer() {
       // 1. Password generation if not provided
       const actualPassword = password?.trim() || `Learn-${Math.random().toString(36).substring(2, 10).toUpperCase()}!`;
 
-      const supabaseUrl = process.env.VITE_SUPABASE_URL || "https://qywcdbuggdlvwwakirzi.supabase.co";
+      const supabaseUrl = process.env.VITE_SUPABASE_URL || "";
       const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
       if (!supabaseServiceKey) {
@@ -333,7 +333,7 @@ async function startServer() {
         return;
       }
 
-      const supabaseUrl = process.env.VITE_SUPABASE_URL || "https://qywcdbuggdlvwwakirzi.supabase.co";
+      const supabaseUrl = process.env.VITE_SUPABASE_URL || "";
       const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
       if (!supabaseServiceKey) {
