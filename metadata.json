@@ -1,0 +1,6 @@
+{
+  "name": "GHSS WORKING",
+  "description": "A premium, modern, and mobile-first School Management App supporting Admin, Teacher, Student, and Parent dashboards, real-time metrics, attendance, exams, fees, and a Google AI Gemini chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
