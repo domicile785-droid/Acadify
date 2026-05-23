@@ -5,17 +5,23 @@ import {
   AcademicSession, SubjectItem, ClassItem, SectionItem, TeacherSpecialization
 } from "../types";
 
-const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL;
-const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+console.log("SUPABASE URL:", supabaseUrl);
+console.log("SUPABASE KEY:", supabaseAnonKey);
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error(
     "CRITICAL: Supabase environment variables are missing!\n" +
-    "Please make sure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your environment variables."
+    "Please ensure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your environment variables."
   );
 }
 
-export const supabase = createClient(supabaseUrl || "", supabaseAnonKey || "");
+export const supabase = createClient(
+  supabaseUrl || "",
+  supabaseAnonKey || ""
+);
 
 /**
  * Helper to upload image to Supabase Storage.
