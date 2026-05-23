@@ -671,6 +671,14 @@ export default function TeacherDashboard({
         </div>
       </header>
 
+      {/* Mobile Backdrop Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/40 dark:bg-slate-950/70 z-30 md:hidden transition-opacity duration-200"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* SIDEBAR NAVIGATION PANEL */}
       <aside className={`fixed inset-y-0 left-0 bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800/80 w-64 transform transition-transform duration-300 z-40 md:relative md:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"

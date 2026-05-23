@@ -640,10 +640,18 @@ export default function App() {
             </div>
           </header>
 
+          {/* Mobile Overlay Backdrop */}
+          {sidebarOpen && (
+            <div 
+              className="fixed inset-0 bg-slate-900/40 dark:bg-slate-950/70 z-40 md:hidden transition-opacity duration-200"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+
           {/* SIDEBAR NAVIGATION GRID */}
-          <aside className={`fixed inset-y-0 left-0 z-40 bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 w-64 transform ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-0 md:translate-x-0"
-          } md:relative md:translate-x-0 shrink-0 flex flex-col justify-between transition-transform duration-250`}>
+          <aside className={`fixed inset-y-0 left-0 z-50 bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 w-64 transform ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          } md:relative md:translate-x-0 shrink-0 flex flex-col justify-between transition-transform duration-250 ease-in-out`}>
             
             <div>
               {/* Brand descriptor */}

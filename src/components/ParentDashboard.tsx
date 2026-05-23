@@ -439,6 +439,14 @@ export default function ParentDashboard({
         )}
       </AnimatePresence>
 
+      {/* Mobile Backdrop Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/40 dark:bg-slate-950/70 z-30 lg:hidden transition-opacity duration-200"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* SIDEBAR NAVIGATION - Premium layout */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between transform transition-transform duration-300 lg:translate-x-0 lg:static ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex flex-col h-full space-y-6 overflow-y-auto pr-1">

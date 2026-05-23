@@ -404,9 +404,17 @@ export default function StudentDashboard({
         )}
       </AnimatePresence>
 
+      {/* Mobile Backdrop Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/40 dark:bg-slate-950/70 z-30 lg:hidden transition-opacity duration-200"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar Layout */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-850 flex flex-col justify-between transform ${
-        sidebarOpen ? "translate-x-0" : "-translate-x-0 lg:translate-x-0"
+        sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       } transition-transform duration-300 ease-in-out lg:static`}>
         
         {/* Brand identity */}
