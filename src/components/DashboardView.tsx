@@ -47,7 +47,7 @@ export default function DashboardView({
             Welcome to <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-green-300 bg-clip-text text-transparent">GOVT HSS HAIGAM App</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-sm leading-relaxed">
-            Manage student registrations, marked attendances, homework tasks, results charts, fees collection, and ask questions to Smarty AI anytime.
+            Manage student registrations, marked attendances, homework tasks, results charts, fees collection, and ask questions to GHSS AI anytime.
           </p>
         </div>
       </div>

@@ -14,6 +14,7 @@ import {
   Student, Attendance, Homework, Notice, Result, 
   TimetableEntry, Message, SchoolNotification, UserRole, Fee, LeaveRequest
 } from "../types";
+import ChatBot from "./ChatBot";
 
 // Adding LeaveRequest and Fee to make sure compilation proceeds harmoniously or defining fallback structures
 interface StudentDashboardProps {
@@ -1510,6 +1511,9 @@ export default function StudentDashboard({
             </motion.div>
           </AnimatePresence>
         </main>
+
+        {/* FLOATING SMARTY ASSISTANT IN LOWER CORNER */}
+        <ChatBot userRole="student" userName={currentStudent?.name || userName} />
       </div>
 
     </div>

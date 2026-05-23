@@ -19,7 +19,7 @@ export default function ChatBot({ userRole, userName }: ChatBotProps) {
     {
       id: "m-init",
       sender: "bot",
-      text: `Hello **${userName}**! I'm **Smarty**, your school AI Assistant configured for your **${userRole.toUpperCase()}** dashboard. How can I help you, solve homework, or check school details today?`,
+      text: `Hello **${userName}** ! I'm **GHSS AI**, your school AI Assistant configured for your **${userRole.toUpperCase()}** dashboard. How can I help you, solve homework, or check school details today?`,
       timestamp: new Date()
     }
   ]);
@@ -30,17 +30,17 @@ export default function ChatBot({ userRole, userName }: ChatBotProps) {
   const messageEndRef = useRef<HTMLDivElement>(null);
 
   const SUGGESTED_PROMPTS = {
-    students: [
+    student: [
       "Explain Quadratic Equations solver step-by-step",
       "Explain kinetic friction coefficients",
       "Give tips to analyze Shakespeare's Hamlet"
     ],
-    parents: [
+    parent: [
       "When are the school summer holidays?",
       "How can I see my child's unpaid tuition fees?",
       "Who can I contact for physical attendance discrepancies?"
     ],
-    teachers: [
+    teacher: [
       "Draft a motivating praise message for math homework",
       "Create a brief lesson plan on electrostatics",
       "How do I mark late student attendances?"
@@ -52,7 +52,7 @@ export default function ChatBot({ userRole, userName }: ChatBotProps) {
     ]
   };
 
-  const currentSuggestions = SUGGESTED_PROMPTS[userRole as keyof typeof SUGGESTED_PROMPTS] || SUGGESTED_PROMPTS.students;
+  const currentSuggestions = SUGGESTED_PROMPTS[userRole] || SUGGESTED_PROMPTS.student;
 
   useEffect(() => {
     if (messageEndRef.current) {
@@ -138,14 +138,14 @@ export default function ChatBot({ userRole, userName }: ChatBotProps) {
       <button
         onClick={() => setIsOpen(true)}
         id="chatbot-trigger"
-        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-full p-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-emerald-500/20 gap-2 cursor-pointer"
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-full py-2 px-3.5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03] flex items-center justify-center border border-emerald-500/10 gap-1.5 cursor-pointer"
       >
-        <span className="relative flex h-3 w-3">
+        <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-teal-300"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-300"></span>
         </span>
-        <Bot className="h-6 w-6" />
-        <span className="font-semibold text-sm pr-1">Ask Smarty AI</span>
+        <Bot className="h-4.5 w-4.5" />
+        <span className="font-semibold text-xs tracking-tight pr-0.5">Ask GHSS AI</span>
       </button>
 
       {/* AI Chatbot Slider Modal */}
@@ -161,7 +161,7 @@ export default function ChatBot({ userRole, userName }: ChatBotProps) {
                 </div>
                 <div>
                   <h3 className="font-bold tracking-tight text-base flex items-center gap-1">
-                    Smarty Assistant
+                    GHSS AI Assistant
                     <Sparkles className="h-4 w-4 text-teal-300 fill-teal-300 animate-pulse" />
                   </h3>
                   <p className="text-xs text-teal-200 flex items-center gap-1 font-mono">
@@ -237,7 +237,7 @@ export default function ChatBot({ userRole, userName }: ChatBotProps) {
                   <div className="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-850 rounded-2xl rounded-tl-none px-4 py-3 shadow-2xs max-w-[80%]">
                     <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm">
                       <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
-                      Smarty is generating explanation...
+                      GHSS AI is generating explanation...
                     </div>
                   </div>
                 </div>

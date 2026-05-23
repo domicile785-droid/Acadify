@@ -29,6 +29,7 @@ import PushNotificationCenter from "./components/PushNotificationCenter";
 import ChatBot from "./components/ChatBot";
 import TeacherDashboard from "./components/TeacherDashboard";
 import StudentDashboard from "./components/StudentDashboard";
+import ParentDashboard from "./components/ParentDashboard";
 import AdminSettings from "./components/AdminSettings";
 
 export default function App() {
@@ -608,6 +609,14 @@ export default function App() {
           darkMode={darkMode}
           setDarkMode={setDarkMode}
         />
+      ) : (isLoggedIn && userRole === "parent") ? (
+        <ParentDashboard
+          userEmail={userEmail}
+          userName={userName}
+          onLogout={handleLogout}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
       ) : (
         /* MAIN LANDING VIEW INCLUDING REAL SIDEBARS */
         <div className="flex-1 flex flex-col md:flex-row min-h-screen">
@@ -843,10 +852,10 @@ export default function App() {
               <AdminSettings />
             )}
 
-            {/* FLOATING SMARTY ASSISTANT IN LOWER CORNER */}
-            <ChatBot userRole={userRole} userName={userName} />
-
           </main>
+
+          {/* FLOATING SMARTY ASSISTANT IN LOWER CORNER */}
+          <ChatBot userRole={userRole} userName={userName} />
 
         </div>
       )}

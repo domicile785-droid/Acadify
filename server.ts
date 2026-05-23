@@ -602,7 +602,7 @@ async function startServer() {
       return;
     }
 
-    const systemPrompt = `You are "Smarty", the dedicated premium AI Chatbot Assistant for "Smart School App" — a modern educational portal.
+    const systemPrompt = `You are "GHSS AI", the dedicated premium AI Chatbot Assistant for "Smart School App" — a modern educational portal.
 Your role changes depending on who you talk to (the current user role is: "${userRole || 'general guest'}").
 - For ADMINS: Help with management, teacher subject loads, class scheduling, attendance patterns, and financial data analysis.
 - For TEACHERS: Assist with designing homework instructions, grading formulas, lecture planning, syllabus content generator, and student motivation emails.
@@ -640,7 +640,7 @@ Maintain an encouraging, highly professional, polite, and educational tone. Keep
     let reply = "";
 
     if (pLower.includes("hello") || pLower.includes("hi") || pLower.includes("hey")) {
-      reply = `Hello! I'm **Smarty**, your intelligent virtual assistant for **Smart School App**. 👋\n\nI can help you with:\n- Explain homework questions step-by-step\n- View holiday notifications & exam schedules\n- Guide you on fee statuses\n- Provide advice for classroom tasks\n\nHow can I help you today?`;
+      reply = `Hello! I'm **GHSS AI**, your intelligent virtual assistant for **Smart School App**. 👋\n\nI can help you with:\n- Explain homework questions step-by-step\n- View holiday notifications & exam schedules\n- Guide you on fee statuses\n- Provide advice for classroom tasks\n\nHow can I help you today?`;
     } else if (pLower.includes("math") || pLower.includes("quadratic") || pLower.includes("equation")) {
       reply = `Let's break down quadratic equations! 📐\n\nA quadratic equation is generally written in the form:\n$$\\mathbf{ax^2 + bx + c = 0}$$\n\nTo solve this, we can use the quadratic formula:\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n\n**Step-by-Step Guide:**\n1. Identify coefficients $a$, $b$, and $c$.\n2. Calculate the Discriminant: $D = b^2 - 4ac$.\n3. If $D > 0$, you have 2 distinct real solutions.\n4. If $D = 0$, you have exactly 1 real solution.\n5. If $D < 0$, you have complex answers.\n\nType your specific numbers and we can walk through it together!`;
     } else if (pLower.includes("holiday") || pLower.includes("closed") || pLower.includes("vacation")) {
@@ -653,7 +653,7 @@ Maintain an encouraging, highly professional, polite, and educational tone. Keep
       reply = `I am happy to assist you with "${prompt}". 🏫\n\nAs your **Smart School Assistant**, I suggest checking:\n- **Homework tab**: To see current outstanding assignments.\n- **Exams tab**: To view Midterm analytics & report card cards.\n- **Timetables**: To verify correct class times and assigned educators.\n\nLet me know your target topic, and I'll explain it immediately!`;
     }
 
-    res.json({ success: true, reply: reply + "\n\n*(Note: This is an intelligent offline response from Smarty)*" });
+    res.json({ success: true, reply: reply + "\n\n*(Note: This is an intelligent offline response from GHSS AI)*" });
   });
 
   // Vite Integration

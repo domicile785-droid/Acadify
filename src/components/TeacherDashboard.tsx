@@ -15,6 +15,7 @@ import {
   Student, Teacher, Attendance, Homework, Notice, Result, 
   TimetableEntry, Message, SchoolNotification, UserRole 
 } from "../types";
+import ChatBot from "./ChatBot";
 
 interface TeacherDashboardProps {
   userEmail: string;
@@ -1951,6 +1952,9 @@ export default function TeacherDashboard({
             </motion.div>
           </AnimatePresence>
         )}
+
+        {/* FLOATING SMARTY ASSISTANT IN LOWER CORNER */}
+        <ChatBot userRole="teacher" userName={currentTeacher.name} />
 
       </main>
 
