@@ -399,11 +399,15 @@ export const db = {
   teachers: {
     async list(): Promise<Teacher[]> {
       let classesList: ClassItem[] = [];
+      let classesLoaded = false;
       try {
-        const { data: clsData } = await supabase.from("classes").select("*");
-        if (clsData) classesList = clsData;
+        const { data: clsData, error: clsError } = await supabase.from("classes").select("*");
+        if (clsData && !clsError) {
+          classesList = clsData;
+          classesLoaded = true;
+        }
       } catch (e) {}
-      if (classesList.length === 0) {
+      if (!classesLoaded) {
         classesList = getLocalItem<ClassItem[]>("classes", DEFAULT_CLASSES);
       }
 
@@ -427,7 +431,7 @@ export const db = {
             )
           `);
         
-        if (data && !error && data.length > 0) {
+        if (data && !error) {
           return data.map((t: any) => {
             const profile = t.profiles || {};
             return {
@@ -912,7 +916,7 @@ export const db = {
     async list(): Promise<ClassItem[]> {
       try {
         const { data, error } = await supabase.from("classes").select("*");
-        if (data && !error && data.length > 0) return data;
+        if (data && !error) return data;
       } catch (e) {}
       return state.classes;
     },
@@ -941,7 +945,7 @@ export const db = {
     async list(): Promise<SectionItem[]> {
       try {
         const { data, error } = await supabase.from("sections").select("*");
-        if (data && !error && data.length > 0) return data;
+        if (data && !error) return data;
       } catch (e) {}
       return state.sections;
     },
@@ -970,7 +974,7 @@ export const db = {
     async list(): Promise<AcademicSession[]> {
       try {
         const { data, error } = await supabase.from("academic_sessions").select("*");
-        if (data && !error && data.length > 0) return data;
+        if (data && !error) return data;
       } catch (e) {}
       return state.sessions;
     },
@@ -999,7 +1003,7 @@ export const db = {
     async list(): Promise<SubjectItem[]> {
       try {
         const { data, error } = await supabase.from("subjects").select("*");
-        if (data && !error && data.length > 0) return data;
+        if (data && !error) return data;
       } catch (e) {}
       return state.subjects;
     },
@@ -1028,7 +1032,7 @@ export const db = {
     async list(): Promise<TeacherSpecialization[]> {
       try {
         const { data, error } = await supabase.from("teacher_specializations").select("*");
-        if (data && !error && data.length > 0) return data;
+        if (data && !error) return data;
       } catch (e) {}
       return state.specializations;
     },
