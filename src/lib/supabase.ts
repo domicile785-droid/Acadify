@@ -49,159 +49,62 @@ export async function uploadImage(file: File, bucket: string): Promise<string> {
 }
 
 // Extensive Realistic Mock Data to pre-populate local storage
-const DEFAULT_STUDENTS: Student[] = [
-  { id: "stud-1", roll_no: "101", name: "David Miller", class_name: "Class 10", section_name: "A", parent_name: "Sarah Miller", parent_email: "sarah.m@gmail.com", parent_phone: "+1 555-0192", photo_url: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=150", status: "Active" },
-  { id: "stud-2", roll_no: "102", name: "Emily Watson", class_name: "Class 10", section_name: "A", parent_name: "Robert Watson", parent_email: "robert.w@gmail.com", parent_phone: "+1 555-0143", photo_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150", status: "Active" },
-  { id: "stud-3", roll_no: "103", name: "Alex Johnson", class_name: "Class 10", section_name: "B", parent_name: "Mark Johnson", parent_email: "mark.j@gmail.com", parent_phone: "+1 555-0122", photo_url: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150", status: "Active" },
-  { id: "stud-4", roll_no: "104", name: "Chloe Davis", class_name: "Class 9", section_name: "A", parent_name: "Jennifer Davis", parent_email: "jennifer.d@gmail.com", parent_phone: "+1 555-0177", photo_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150", status: "Active" },
-  { id: "stud-5", roll_no: "105", name: "Marcus Brown", class_name: "Class 9", section_name: "B", parent_name: "Arthur Brown", parent_email: "arthur.b@gmail.com", parent_phone: "+1 555-0165", photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150", status: "Active" }
-];
+const DEFAULT_STUDENTS: Student[] = [];
 
-const DEFAULT_TEACHERS: Teacher[] = [
-  { id: "teach-1", name: "Elena Rostova", email: "elena.rostova@smartschool.edu", phone: "+1 555-0101", subject: "Mathematics", classes_assigned: ["Class 10A", "Class 10B", "Class 9A"], photo_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" },
-  { id: "teach-2", name: "Thomas Sterling", email: "thomas.s@smartschool.edu", phone: "+1 555-0102", subject: "Physics", classes_assigned: ["Class 10A", "Class 9B"], photo_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" },
-  { id: "teach-3", name: "Aria Montgomery", email: "aria.m@smartschool.edu", phone: "+1 555-0103", subject: "English Literature", classes_assigned: ["Class 10B", "Class 9A", "Class 9B"], photo_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" }
-];
+const DEFAULT_TEACHERS: Teacher[] = [];
 
-const DEFAULT_PARENTS: Parent[] = [
-  { id: "par-1", name: "Sarah Miller", email: "sarah.m@gmail.com", phone: "+1 555-0192", students_associated: ["stud-1"] },
-  { id: "par-2", name: "Robert Watson", email: "robert.w@gmail.com", phone: "+1 555-0143", students_associated: ["stud-2"] },
-  { id: "par-3", name: "Jennifer Davis", email: "jennifer.d@gmail.com", phone: "+1 555-0177", students_associated: ["stud-4"] }
-];
+const DEFAULT_PARENTS: Parent[] = [];
 
-const DEFAULT_ATTENDANCE: Attendance[] = [
-  { id: "att-1", student_id: "stud-1", attendance_date: "2026-05-22", status: "Present", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-1", section_name: "A", academic_session: "2026" },
-  { id: "att-2", student_id: "stud-2", attendance_date: "2026-05-22", status: "Present", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-1", section_name: "A", academic_session: "2026" },
-  { id: "att-3", student_id: "stud-3", attendance_date: "2026-05-22", status: "Absent", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-1", section_name: "B", academic_session: "2026" },
-  { id: "att-4", student_id: "stud-4", attendance_date: "2026-05-22", status: "Late", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-2", section_name: "A", academic_session: "2026" },
-  { id: "att-5", student_id: "stud-5", attendance_date: "2026-05-22", status: "Present", marked_by: "Thomas Sterling", teacher_id: "teach-2", class_id: "class-2", section_name: "B", academic_session: "2026" },
-  
-  { id: "att-6", student_id: "stud-1", attendance_date: "2026-05-21", status: "Present", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-1", section_name: "A", academic_session: "2026" },
-  { id: "att-7", student_id: "stud-2", attendance_date: "2026-05-21", status: "Present", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-1", section_name: "A", academic_session: "2026" },
-  { id: "att-8", student_id: "stud-3", attendance_date: "2026-05-21", status: "Present", marked_by: "Elena Rostova", teacher_id: "teach-1", class_id: "class-1", section_name: "B", academic_session: "2026" }
-];
+const DEFAULT_ATTENDANCE: Attendance[] = [];
 
-const DEFAULT_HOMEWORK: Homework[] = [
-  { id: "hw-1", subject: "Mathematics", title: "Quadratic Equations Chapter 4", description: "Solve exercises 4.1 to 4.4 on notebook. Submit clean working steps for the complex equations.", deadline: "2026-05-26", class_name: "Class 10", section: "A", teacher_name: "Elena Rostova", created_at: "2026-05-22" },
-  { id: "hw-2", subject: "Physics", title: "Newton's Laws & Friction Sheets", description: "Read chapter 6 on electromagnetic induction and solve physics problems 1 to 10 in the workbook.", deadline: "2026-05-25", class_name: "Class 10", section: "A", teacher_name: "Thomas Sterling", created_at: "2026-05-21" },
-  { id: "hw-3", subject: "English Literature", title: "Shakespeare's Hamlet Analysis Essay", description: "Write a 500-word analysis essay on Hamlet's soliloquy in Act 3 Scene 1.", deadline: "2026-05-28", class_name: "Class 10", section: "B", teacher_name: "Aria Montgomery", created_at: "2026-05-22" }
-];
+const DEFAULT_HOMEWORK: Homework[] = [];
 
-const DEFAULT_NOTICES: Notice[] = [
-  { id: "not-1", title: "Summer Rest & Vacation Notice", content: "School will remain closed for summer vacation starting from June 1st to June 30th. Normal physical classes will resume from July 1st.", type: "holiday", date: "2026-05-22", created_by: "Administration" },
-  { id: "not-2", title: "First Semester Mathematics Exam Schedule", content: "The midterm syllabus covers chapters 1-5. Exams start June 15th onwards.", type: "exam", date: "2026-05-20", created_by: "Admin Principal" },
-  { id: "not-3", title: "URGENT: Heavy Rain Forecast - Delayed morning check-in", content: "Due to heavy convective showers forecast in the morning, general school assembly is cancelled. Classroom check-in delayed till 9 AM.", type: "emergency", date: "2026-05-23", created_by: "Safety Operations" },
-  { id: "not-4", title: "Smart School Science Exhibition 2026", content: "All pupils are invited to showcase creative science experiments. Top 3 physical entries win fully-guided AI development kits.", type: "general", date: "2026-05-18", created_by: "Thomas Sterling" }
-];
+const DEFAULT_NOTICES: Notice[] = [];
 
-const DEFAULT_RESULTS: Result[] = [
-  { id: "res-1", student_id: "stud-1", subject: "Mathematics", marks: 92, max_marks: 100, exam_name: "Midterm Exam", comments: "Outstanding understanding of complex algebra formulas.", date: "2026-05-15" },
-  { id: "res-2", student_id: "stud-1", subject: "Physics", marks: 88, max_marks: 100, exam_name: "Midterm Exam", comments: "Great lab results, needs slight practice on theoretical numericals.", date: "2026-05-15" },
-  { id: "res-3", student_id: "stud-2", subject: "Mathematics", marks: 95, max_marks: 100, exam_name: "Midterm Exam", comments: "Perfect assignment submission, excellent focus.", date: "2026-05-15" },
-  { id: "res-4", student_id: "stud-2", subject: "Physics", marks: 91, max_marks: 100, exam_name: "Midterm Exam", comments: "Very creative approach on motion diagrams.", date: "2026-05-15" },
-  { id: "res-5", student_id: "stud-3", subject: "Mathematics", marks: 73, max_marks: 100, exam_name: "Midterm Exam", comments: "Passing score, but needs to work on homework submissions consistency.", date: "2026-05-15" }
-];
+const DEFAULT_RESULTS: Result[] = [];
 
-const DEFAULT_FEES: Fee[] = [
-  { id: "fee-1", student_id: "stud-1", amount: 1250, status: "Paid", due_date: "2026-05-10", billing_cycle: "May 2026", receipt_no: "REC-2026051" },
-  { id: "fee-2", student_id: "stud-2", amount: 1250, status: "Paid", due_date: "2026-05-10", billing_cycle: "May 2026", receipt_no: "REC-2026052" },
-  { id: "fee-3", student_id: "stud-3", amount: 1250, status: "Unpaid", due_date: "2026-05-28", billing_cycle: "May 2026" },
-  { id: "fee-4", student_id: "stud-4", amount: 1100, status: "Unpaid", due_date: "2026-05-25", billing_cycle: "May 2026" },
-  { id: "fee-5", student_id: "stud-5", amount: 1100, status: "Overdue", due_date: "2026-05-05", billing_cycle: "May 2026" }
-];
+const DEFAULT_FEES: Fee[] = [];
 
-const DEFAULT_TIMETABLE: TimetableEntry[] = [
-  // Monday
-  { id: "tt-1", class_name: "Class 10", section: "A", day_of_week: "Monday", start_time: "08:30 AM", end_time: "09:15 AM", subject: "Mathematics", teacher_name: "Elena Rostova" },
-  { id: "tt-2", class_name: "Class 10", section: "A", day_of_week: "Monday", start_time: "09:15 AM", end_time: "10:00 AM", subject: "Physics", teacher_name: "Thomas Sterling" },
-  { id: "tt-3", class_name: "Class 10", section: "A", day_of_week: "Monday", start_time: "10:15 AM", end_time: "11:00 AM", subject: "Chemistry", teacher_name: "Dr. Ryan Patel" },
-  { id: "tt-4", class_name: "Class 10", section: "A", day_of_week: "Monday", start_time: "11:00 AM", end_time: "11:45 AM", subject: "English Literature", teacher_name: "Aria Montgomery" },
-  
-  // Tuesday
-  { id: "tt-5", class_name: "Class 10", section: "A", day_of_week: "Tuesday", start_time: "08:30 AM", end_time: "09:15 AM", subject: "Physics", teacher_name: "Thomas Sterling" },
-  { id: "tt-6", class_name: "Class 10", section: "A", day_of_week: "Tuesday", start_time: "09:15 AM", end_time: "10:00 AM", subject: "Mathematics", teacher_name: "Elena Rostova" },
-  { id: "tt-7", class_name: "Class 10", section: "A", day_of_week: "Tuesday", start_time: "10:15 AM", end_time: "11:00 AM", subject: "History", teacher_name: "Mrs. Clara Higgins" },
-  
-  // Wednesday
-  { id: "tt-8", class_name: "Class 10", section: "A", day_of_week: "Wednesday", start_time: "08:30 AM", end_time: "09:15 AM", subject: "Mathematics", teacher_name: "Elena Rostova" },
-  { id: "tt-9", class_name: "Class 10", section: "A", day_of_week: "Wednesday", start_time: "09:15 AM", end_time: "10:00 AM", subject: "English Literature", teacher_name: "Aria Montgomery" },
-  
-  // Thursday
-  { id: "tt-10", class_name: "Class 10", section: "A", day_of_week: "Thursday", start_time: "08:30 AM", end_time: "09:15 AM", subject: "Biology", teacher_name: "Mrs. Grace Hopper" },
-  { id: "tt-11", class_name: "Class 10", section: "A", day_of_week: "Thursday", start_time: "09:15 AM", end_time: "10:00 AM", subject: "Physics", teacher_name: "Thomas Sterling" },
-  
-  // Friday
-  { id: "tt-12", class_name: "Class 10", section: "A", day_of_week: "Friday", start_time: "08:30 AM", end_time: "09:15 AM", subject: "Computer Science", teacher_name: "Mr. David Ritchie" },
-  { id: "tt-13", class_name: "Class 10", section: "A", day_of_week: "Friday", start_time: "10:15 AM", end_time: "11:00 AM", subject: "Mathematics", teacher_name: "Elena Rostova" }
-];
+const DEFAULT_TIMETABLE: TimetableEntry[] = [];
 
-const DEFAULT_LEAVE_REQUESTS: LeaveRequest[] = [
-  { id: "lr-1", requester_id: "stud-1", requester_name: "David Miller", requester_role: "student", type: "Sick", reason: "Persistent heavy high-fever & cold. Doctor advised bed rest for 2 whole days.", start_date: "2026-05-24", end_date: "2026-05-25", status: "Pending" },
-  { id: "lr-2", requester_id: "stud-2", requester_name: "Emily Watson", requester_role: "student", type: "Casual", reason: "Family wedding event out-of-town. Need to attend ceremonies.", start_date: "2026-05-20", end_date: "2026-05-22", status: "Approved", approved_by: "Thomas Sterling" },
-  { id: "lr-3", requester_id: "teach-2", requester_name: "Thomas Sterling", requester_role: "teacher", type: "Casual", reason: "Personal emergency paperwork at standard local municipality center.", start_date: "2026-05-28", end_date: "2026-05-28", status: "Pending" }
-];
+const DEFAULT_LEAVE_REQUESTS: LeaveRequest[] = [];
 
-const DEFAULT_GALLERY: GalleryItem[] = [
-  { id: "gal-1", title: "Robotics Design Lab Workshop", url: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600", type: "image", caption: "Students working on motor circuits for autonomous skateboard robots.", date: "2026-05-10" },
-  { id: "gal-2", title: "School Athletics Field Championship", url: "https://images.unsplash.com/photo-1541252260730-0412e8e2108e?w=600", type: "image", caption: "Celebrating the victorious Class 10 track relays team.", date: "2026-05-14" },
-  { id: "gal-3", title: "Chemistry Complex Lab Station", url: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=600", type: "image", caption: "Performing safe titration reactions during visual chemistry course.", date: "2026-05-18" },
-  { id: "gal-4", title: "Modern Central Resource Library", url: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600", type: "image", caption: "Group study session and digital search tools lookup zone.", date: "2026-05-22" }
-];
+const DEFAULT_GALLERY: GalleryItem[] = [];
 
-const DEFAULT_MESSAGES: Message[] = [
-  { id: "msg-1", sender_id: "par-1", sender_name: "Sarah Miller", sender_role: "parent", receiver_id: "teach-1", receiver_name: "Elena Rostova", receiver_role: "teacher", content: "Hello Elena, I wanted to ask about David's performance in homework 1.", timestamp: "2026-05-22T14:30:00Z" },
-  { id: "msg-2", sender_id: "teach-1", sender_name: "Elena Rostova", sender_role: "teacher", receiver_id: "par-1", receiver_name: "Sarah Miller", receiver_role: "parent", content: "Hi Sarah! David did exceptionally well. He solved the equation sheet step-by-step beautifully.", timestamp: "2026-05-22T14:33:00Z" },
-  { id: "msg-3", sender_id: "par-2", sender_name: "Robert Watson", sender_role: "parent", receiver_id: "teach-2", receiver_name: "Thomas Sterling", receiver_role: "teacher", content: "Mr. Sterling, is Emily's science project presentation scheduled for Tuesday morning?", timestamp: "2026-05-21T09:12:00Z" },
-  { id: "msg-4", sender_id: "teach-2", sender_name: "Thomas Sterling", sender_role: "teacher", receiver_id: "par-2", receiver_name: "Robert Watson", receiver_role: "parent", content: "Yes indeed, Robert. Emily is presenting second in line at exactly 9:15 AM.", timestamp: "2026-05-21T09:15:00Z" }
-];
+const DEFAULT_MESSAGES: Message[] = [];
 
-const DEFAULT_NOTIFICATIONS: SchoolNotification[] = [
-  { id: "notif-1", title: "Math Assignment Outstanding", content: "Homework 'Quadratic Equations Chapter 4' has been posted by Elena Rostova. Deadline is May 26th.", type: "homework", target_role: "student", date: "2026-05-22", read: false },
-  { id: "notif-2", title: "May Tuition Fee Bill Ready", content: "Your billing cycle fee statement is ready. Please complete online payout by due date.", type: "fee", target_role: "parent", date: "2026-05-18", read: true },
-  { id: "notif-3", title: "Daily Physical Attendance Log alert", content: "David Miller was marked PRESENT in home class today at 10:15 AM.", type: "attendance", target_role: "parent", date: "2026-05-22", read: false },
-  { id: "notif-4", title: "Heavy Downpours - Emergency Safety Alert", content: "DELAYED morning check-in until 09:00 AM due to convective storm reports.", type: "general", target_role: "all", date: "2026-05-23", read: false }
-];
+const DEFAULT_NOTIFICATIONS: SchoolNotification[] = [];
 
 // Deleted internal ClassItem
 
-const DEFAULT_SESSIONS: AcademicSession[] = [
-  { id: "sess-1", session_name: "2024-25", is_active: false },
-  { id: "sess-2", session_name: "2025-26", is_active: false },
-  { id: "sess-3", session_name: "2026-27", is_active: true }
-];
+const DEFAULT_SESSIONS: AcademicSession[] = [];
 
-const DEFAULT_SUBJECTS: SubjectItem[] = [
-  { id: "subj-1", subject_name: "Mathematics" },
-  { id: "subj-2", subject_name: "Physics" },
-  { id: "subj-3", subject_name: "Chemistry" },
-  { id: "subj-4", subject_name: "Biology" },
-  { id: "subj-5", subject_name: "English Literature" },
-  { id: "subj-6", subject_name: "Computer Science" }
-];
+const DEFAULT_SUBJECTS: SubjectItem[] = [];
 
-const DEFAULT_CLASSES: ClassItem[] = [
-  { id: "class-1", class_name: "10th", session_id: "sess-3", class_teacher_id: "teach-1" },
-  { id: "class-2", class_name: "9th", session_id: "sess-3", class_teacher_id: null },
-  { id: "class-3", class_name: "8th", session_id: "sess-3", class_teacher_id: null }
-];
+const DEFAULT_CLASSES: ClassItem[] = [];
 
-const DEFAULT_SECTIONS: SectionItem[] = [
-  { id: "sec-1", class_id: "class-1", section_name: "A" },
-  { id: "sec-2", class_id: "class-1", section_name: "B" },
-  { id: "sec-3", class_id: "class-2", section_name: "A" },
-  { id: "sec-4", class_id: "class-2", section_name: "B" }
-];
+const DEFAULT_SECTIONS: SectionItem[] = [];
 
-const DEFAULT_SPECIALIZATIONS: TeacherSpecialization[] = [
-  { id: "spec-1", specialization_name: "Science" },
-  { id: "spec-2", specialization_name: "Mathematics" },
-  { id: "spec-3", specialization_name: "Languages" },
-  { id: "spec-4", specialization_name: "Humanities" }
-];
+const DEFAULT_SPECIALIZATIONS: TeacherSpecialization[] = [];
 
 // Read helper from localStorage
 function getLocalItem<T>(key: string, defaultValue: T): T {
   const data = localStorage.getItem(`smart_school_${key}`);
+  if (data) {
+    // If local storage has legacy pre-populated mock details, wipe it to keep state 100% database real
+    if (
+      data.includes("David Miller") || 
+      data.includes("Elena Rostova") || 
+      data.includes("Thomas Sterling") || 
+      data.includes("Summer Rest") || 
+      data.includes("Class 10") || 
+      data.includes("sess-3")
+    ) {
+      localStorage.removeItem(`smart_school_${key}`);
+      localStorage.setItem(`smart_school_${key}`, JSON.stringify(defaultValue));
+      return defaultValue;
+    }
+  }
   if (!data) {
     localStorage.setItem(`smart_school_${key}`, JSON.stringify(defaultValue));
     return defaultValue;
@@ -285,7 +188,14 @@ export const db = {
     async list(): Promise<Student[]> {
       try {
         const { data, error } = await supabase.from("students").select("*");
-        if (data && !error) return data;
+        if (data && !error) {
+          return data.map((s: any) => ({
+            ...s,
+            class_name: s.class_name || s.class || "Class 10",
+            section_name: s.section_name || s.section || "A",
+            parent_name: s.parent_name || s.father_name || s.mother_name || "Parent"
+          }));
+        }
       } catch (e) {}
       return state.students;
     },
@@ -700,7 +610,12 @@ export const db = {
     async list(): Promise<Homework[]> {
       try {
         const { data, error } = await supabase.from("homework").select("*");
-        if (data && !error) return data;
+        if (data && !error) {
+          return data.map((h: any) => ({
+            ...h,
+            class_name: h.class_name || h.class || "Class 10"
+          }));
+        }
       } catch (e) {}
       return state.homework;
     },
